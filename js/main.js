@@ -1,7 +1,7 @@
 //eventListener for the button that then tells the photos to slide//
 
-let src=["img/andre3k.avif", "img/jamila.jpg", "img/missy.jpeg", "img/duckwrth.jpg", "img/lupe.jpg", "img/badbunny.png", "img/lauryn.png", "img/stevie.jpeg", "img/saba.png", "img/mosdef.jpg"]
-
+let src=["img/andre3k.avif", "img/jamila.jpg",  "img/missy.jpeg", "img/duckwrth.jpg", "img/lupe.jpg", "img/badbunny.png", "img/lauryn.png", "img/stevie.jpeg", "img/saba.png", "img/mosdef.jpg"]
+//let src=["img/andre3k.avif", "img/jamila.jpg", "img/missy.jpeg", "img/duckwrth.jpg", "img/lupe.jpg", "img/badbunny.png", "img/lauryn.png", "img/stevie.jpeg", "img/saba.png", "img/mosdef.jpg"]//
 
 let coincount = 1000
 document.querySelector('.coincount').innerText = coincount
@@ -12,46 +12,89 @@ document.querySelector('.largecoin').addEventListener('click', run2)
 
 document.querySelector('.feelinglucky').addEventListener('click', run3)
 
+
+function disableButtons (){
+    document.querySelector('.feelinglucky').disabled = false;
+    document.querySelector('.largecoin').disabled = false;
+    document.querySelector('.smallcoin').disabled = false;
+    if (coincount <= 4){
+        document.querySelector('.smallcoin').disabled = true;
+        const header = document.getElementById("labelhead");
+    const ogHead = header.innerHTML;
+    header.innerHTML = 'You Let the Music Die 😔';
+    }
+    if (coincount < 50){
+        document.querySelector('.largecoin').disabled = true;
+    }
+     if (coincount != 500){
+        document.querySelector('.feelinglucky').disabled = true;
+    }
+}
+
 function run () {
 coincount = coincount - 5;
-document.querySelector('.coincount').innerText = coincount
 document.querySelector(".cardimage1 img").src = chooseRandomImgForPhoto()
 document.querySelector(".cardimage2 img").src = chooseRandomImgForPhoto()
 document.querySelector(".cardimage3 img").src = chooseRandomImgForPhoto()
-if (coincount <= 1){
-    document.querySelector('.smallcoin').removeEventListener ('click', run);
+if (document.querySelector(".cardimage1 img").src == document.querySelector(".cardimage2 img").src && document.querySelector(".cardimage2 img").src  == document.querySelector(".cardimage3 img").src){
+    alert("You Win - Take 250 Coins!")
+    const header = document.getElementById("labelhead");
+    const ogHead = header.innerHTML;
+    header.innerHTML = 'You\'re A Winner!!';
+    setTimeout(() => {
+       header.innerHTML = ogHead;
+    }, 1000);
+    coincount = coincount + 250;
+      }
+{
+document.querySelector('.coincount').innerText = coincount
+disableButtons ()
 }
 }
 
-//    document.querySelector('.smallcoin').removeEventListener("mousedown", handleMouseDown, {capture: true});//
-
-
-//build a disable function so that disabling is not based on the button being clicked//
 
 function run2 () {
     coincount = coincount - 50;
-document.querySelector('.coincount').innerText = coincount
 document.querySelector(".cardimage1 img").src = chooseRandomImgForPhoto()
 document.querySelector(".cardimage2 img").src = chooseRandomImgForPhoto()
 document.querySelector(".cardimage3 img").src = chooseRandomImgForPhoto()
-if (coincount == 0){
-    document.querySelector('.largecoin').disabled = true;
+if (document.querySelector(".cardimage1 img").src == document.querySelector(".cardimage2 img").src && document.querySelector(".cardimage2 img").src  == document.querySelector(".cardimage3 img").src){
+    alert("You Win - Take 500 Coins!")
+    const header = document.getElementById("labelhead");
+    const ogHead = header.innerHTML;
+    header.innerHTML = 'You\'re A Winner!!';
+    setTimeout(() => {
+       header.innerHTML = ogHead;
+    }, 1000);
+    coincount = coincount + 500;
+      }
+{
+document.querySelector('.coincount').innerText = coincount
+disableButtons ()
 }
 }
 
+
 function run3 () {
-    if (coincount == 500){
-        //find a way to change color of innertext //
     coincount = coincount - 500;
-    document.querySelector('.coincount').innerText = coincount
     document.querySelector(".cardimage1 img").src = chooseRandomImgForPhoto()
     document.querySelector(".cardimage2 img").src = chooseRandomImgForPhoto()
     document.querySelector(".cardimage3 img").src = chooseRandomImgForPhoto()
-    if (coincount == 0){
-        document.querySelector('.largecoin').disabled = true;
+    if (document.querySelector(".cardimage1 img").src == document.querySelector(".cardimage2 img").src && document.querySelector(".cardimage2 img").src  == document.querySelector(".cardimage3 img").src){
+        alert("You Win - Take All the Money!!!")
+        const header = document.getElementById("labelhead");
+        const ogHead = header.innerHTML;
+        header.innerHTML = 'You\'re A Winner!!';
+        setTimeout(() => {
+           header.innerHTML = ogHead;
+        }, 1000);
+        coincount = coincount + 1000;
+          }
+    {
+    document.querySelector('.coincount').innerText = coincount
+    disableButtons ()
     }
     }
-}
     
 
 
@@ -66,6 +109,10 @@ function chooseRandomImgForPhoto(){
 document.querySelector(".cardimage1 img").src = chooseRandomImgForPhoto()
 document.querySelector(".cardimage2 img").src = chooseRandomImgForPhoto()
 document.querySelector(".cardimage3 img").src = chooseRandomImgForPhoto()
+
+if (document.querySelector(".cardimage1 img").src == document.querySelector(".cardimage2 img").src && document.querySelector(".cardimage2 img").src  == document.querySelector(".cardimage3 img").src){
+    alert("You Win!")
+}
 
 
 
