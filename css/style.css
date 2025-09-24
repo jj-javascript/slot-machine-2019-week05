@@ -42,9 +42,11 @@ h2{
     background-color: antiquewhite;
 }
 .cardimages div>img{
+    display: inline-bock;
     width: 55%;
-    object-fit: cover;
-    max-height:fit-content;
+    object-fit: contain;
+    max-height:max-content;
+    overflow: hidden;
 }
 
 .buttons{
